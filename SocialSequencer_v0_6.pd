@@ -1,10 +1,10 @@
-#N canvas 592 71 662 690 10;
+#N canvas 592 71 1106 690 10;
 #X floatatom 128 134 5 0 0 0 - - -;
 #X obj 128 62 loadbang;
 #X msg 128 88 0;
 #X text 44 133 current bank;
 #X text 43 88 default bank;
-#N canvas 34 703 256 234 bankSelector 0;
+#N canvas 34 733 345 314 bankSelector 1;
 #X obj 151 63 + 1;
 #X obj 66 64 - 1;
 #X floatatom 105 175 5 0 0 0 - - -;
@@ -13,12 +13,14 @@
 #X obj 151 38 v currentBank;
 #X obj 105 143 v currentBank;
 #X obj 15 15 inlet;
-#X obj 105 196 outlet;
+#X obj 155 282 outlet;
 #X obj 66 15 inlet;
 #X obj 151 14 inlet;
+#X floatatom 149 235 5 0 0 0 - - -;
+#X obj 141 202 mod 5;
 #X connect 0 0 3 0;
 #X connect 1 0 3 0;
-#X connect 2 0 8 0;
+#X connect 2 0 12 0;
 #X connect 3 0 6 0;
 #X connect 3 1 6 0;
 #X connect 4 0 1 0;
@@ -27,6 +29,8 @@
 #X connect 7 0 3 0;
 #X connect 9 0 4 0;
 #X connect 10 0 5 0;
+#X connect 11 0 8 0;
+#X connect 12 0 11 0;
 #X restore 135 111 pd bankSelector;
 #X obj 178 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -1020,6 +1024,23 @@
 #X text 379 228 output;
 #X text 458 228 output;
 #X msg 443 86 0.2;
+#X obj 718 93 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 718 113 metro 300;
+#X obj 699 137 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 718 67 loadbang;
+#X obj 276 71 r buttonNextGpio17;
+#X text 701 34 ------------- NEXT BANK BUTTON -------;
+#X obj 875 190 ggee/shell;
+#X obj 831 208 sel 0;
+#X obj 855 236 s buttonNextGpio17;
+#X msg 803 164 gpioget gpiochip0 17;
+#X obj 735 214 ggee/shell;
+#X obj 702 247 sel 0;
+#X obj 194 50 r buttonNextGpio27;
+#X obj 711 279 s buttonNextGpio27;
+#X msg 663 188 gpioget gpiochip0 27;
 #X connect 1 0 2 0;
 #X connect 2 0 5 0;
 #X connect 5 0 0 0;
@@ -1073,3 +1094,16 @@
 #X connect 64 0 53 0;
 #X connect 66 0 65 0;
 #X connect 71 0 12 0;
+#X connect 72 0 73 0;
+#X connect 73 0 74 0;
+#X connect 74 0 81 0;
+#X connect 74 0 86 0;
+#X connect 75 0 72 0;
+#X connect 76 0 7 0;
+#X connect 78 0 79 0;
+#X connect 79 0 80 0;
+#X connect 81 0 78 0;
+#X connect 82 0 83 0;
+#X connect 83 0 85 0;
+#X connect 84 0 6 0;
+#X connect 86 0 82 0;
