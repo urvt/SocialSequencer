@@ -2,7 +2,8 @@
 
 ## SOUNDBANKS
 ```
-makefilename ~/Desktop/Imported3/Bank_%d/Board_%%d/Slot_%%%%%%%%d/Material_%%%%d.wav
+previous: makefilename ~/Desktop/Imported2/Bank_%d/Board_%%d/Slot_%%%%%%%%d/Material_%%%%d.wav
+new     : makefilename ~/Soundbanks/Bank_%d/Board_%%d/Slot_%%%%%%%%d/Material_%%%%d.wav
 Slot_0 - Bass
 Slot_1 - Synth
 Slot_2 - Kick
