@@ -2,8 +2,7 @@
 start_social_sequencer () {
 
 	echo Starting...
-	pd -nogui -alsa -noadc -audiooutdev 3 -verbose -nomidiout -path /home/pi/SocialSequencer/pd-0.47-1/extra/ -open /home/pi/SocialSequencer/AudioTest.pd &
-	
+	pd -verbose -audiodev 7 -mididev 1 -listdev -open /home/pi/Documents/SocialSequencerRaspberry/SocialSequencer_v0_6.pd
 }
 
 echo
