@@ -1,10 +1,10 @@
-#N canvas 592 71 1106 690 10;
+#N canvas 585 390 1106 690 10;
 #X floatatom 128 134 5 0 0 0 - - -;
 #X obj 128 62 loadbang;
 #X msg 128 88 0;
 #X text 44 133 current bank;
 #X text 43 88 default bank;
-#N canvas 34 733 345 314 bankSelector 1;
+#N canvas 34 733 345 314 bankSelector 0;
 #X obj 151 63 + 1;
 #X obj 66 64 - 1;
 #X floatatom 105 175 5 0 0 0 - - -;
@@ -40,11 +40,11 @@
 #X text 205 88 +;
 #X text 14 543 filename template;
 #X obj 446 110 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 2540 1;
-#X obj 443 62 loadbang;
+-1 -1 2580 1;
+#X obj 437 31 loadbang;
 #X floatatom 443 133 5 0 0 0 - - -;
 #X text 353 110 reverb amount;
-#X text 477 86 (default);
+#X text 492 31 (default);
 #X obj 77 271 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 10160 1;
 #X floatatom 77 407 5 0 0 0 - - -;
@@ -90,7 +90,7 @@
 #X obj 167 132 s currentBank;
 #X obj 128 522 r currentBank;
 #X obj 225 460 s channelMixerValues;
-#N canvas 138 436 457 362 theBrain 1;
+#N canvas 138 436 457 362 theBrain 0;
 #N canvas 8 87 575 304 boardElement 0;
 #X obj 86 210 readsf~;
 #X msg 94 188 1;
@@ -208,7 +208,7 @@
 #X connect 47 0 39 0;
 #X connect 48 0 42 0;
 #X restore 149 136 pd boardElement;
-#N canvas 492 458 678 141 keyboardInputB0 1;
+#N canvas 492 458 678 141 keyboardInputB0 0;
 #X obj 45 106 outlet;
 #X obj 15 13 key;
 #X floatatom 15 36 5 0 0 0 - - -;
@@ -368,7 +368,7 @@
 #X connect 31 2 25 0;
 #X connect 31 3 26 0;
 #X restore 326 107 pd keyboardInputB1;
-#N canvas 969 320 310 174 makeBoardFilename 1;
+#N canvas 969 350 310 174 makeBoardFilename 0;
 #X obj 16 108 makefilename -;
 #X msg 47 87 0;
 #X msg 136 87 1;
@@ -744,7 +744,7 @@
 #X obj 15 17 inlet;
 #X obj 180 19 inlet;
 #X obj 98 18 inlet;
-#N canvas 17 155 680 182 midiInputB0 1;
+#N canvas 721 121 680 182 midiInputB0 1;
 #X obj 45 136 outlet;
 #X floatatom 15 66 5 0 0 0 - - -;
 #X msg 16 111 0;
@@ -827,7 +827,7 @@
 #X connect 32 2 24 0;
 #X connect 32 3 25 0;
 #X restore 146 79 pd midiInputB0;
-#N canvas 45 143 678 182 midiInputB1 1;
+#N canvas 157 606 678 182 midiInputB1 1;
 #X obj 45 136 outlet;
 #X floatatom 15 66 5 0 0 0 - - -;
 #X msg 16 111 0;
@@ -965,7 +965,7 @@
 #X restore 243 649 pd theBrain;
 #X obj 274 625 r channelMixerValues;
 #X text 27 32 ----------------- SOUND BANKS -----------------;
-#X text 347 32 ------------------- REVERB -------------------;
+#X text 344 11 ------------------- REVERB -------------------;
 #X text 28 175 ---------------------------------------------- MIXER
 ;
 #X text 346 175 ----------------------------------------------;
@@ -1021,7 +1021,7 @@
 #X text 299 228 output;
 #X text 379 228 output;
 #X text 458 228 output;
-#X msg 443 86 0.2;
+#X msg 438 54 0.2;
 #X obj 718 93 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 718 113 metro 300;
@@ -1041,6 +1041,14 @@
 #X msg 663 188 gpioget gpiochip0 27;
 #X obj 128 543 makefilename Soundbanks/Bank_%d/Board_%%d/Slot_%%%%%%%%d/Material_%%%%d.wav
 , f 85;
+#X obj 772 374 ctlin 91 1;
+#X floatatom 771 407 5 0 0 0 - - -;
+#X obj 773 459 clip 0 1;
+#X floatatom 773 496 5 0 0 0 - - -;
+#X obj 771 432 / 128;
+#X text 739 351 -- REVERB POTENTIOMETER --;
+#X obj 828 492 s reverbValue;
+#X obj 442 79 r reverbValue;
 #X connect 1 0 2 0;
 #X connect 2 0 5 0;
 #X connect 5 0 0 0;
@@ -1092,7 +1100,6 @@
 #X connect 54 0 53 1;
 #X connect 63 0 52 0;
 #X connect 65 0 64 0;
-#X connect 70 0 11 0;
 #X connect 71 0 72 0;
 #X connect 72 0 73 0;
 #X connect 73 0 80 0;
@@ -1107,3 +1114,9 @@
 #X connect 83 0 6 0;
 #X connect 85 0 81 0;
 #X connect 86 0 46 0;
+#X connect 87 0 88 0;
+#X connect 88 0 91 0;
+#X connect 89 0 90 0;
+#X connect 89 0 93 0;
+#X connect 91 0 89 0;
+#X connect 94 0 11 0;
