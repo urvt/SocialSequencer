@@ -1,4 +1,4 @@
-#N canvas 182 377 1106 690 10;
+#N canvas 75 361 1106 690 10;
 #X floatatom 128 134 5 0 0 0 - - -;
 #X obj 128 62 loadbang;
 #X msg 128 88 0;
@@ -40,7 +40,7 @@
 #X text 205 88 +;
 #X text 14 543 filename template;
 #X obj 446 110 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 99 1;
 #X obj 437 31 loadbang;
 #X floatatom 443 133 5 0 0 0 - - -;
 #X text 353 110 reverb amount;
@@ -591,7 +591,7 @@
 #X connect 10 0 22 0;
 #X connect 11 0 23 0;
 #X restore 156 267 pd outputAdapter;
-#N canvas 25 286 561 104 outputFA101 0;
+#N canvas 25 286 561 104 outputFA101 1;
 #X obj 21 30 inlet~;
 #X obj 78 30 inlet~;
 #X text 21 12 main L;
@@ -620,7 +620,7 @@
 #X connect 9 0 18 1;
 #X connect 10 0 19 0;
 #X connect 11 0 19 1;
-#X restore 163 318 pd outputFA101;
+#X restore 160 391 pd outputFA101;
 #N canvas 0 23 515 122 effectProcessor 0;
 #X obj 25 31 inlet;
 #X text 17 13 controls;
@@ -910,39 +910,114 @@
 #X connect 32 2 16 0;
 #X connect 32 3 17 0;
 #X restore 306 79 pd midiInputB1;
-#N canvas 1119 183 450 300 linkDelay 1;
-#X obj 106 252 delwrite~ arrayDelay 2000;
-#X obj 229 37 delread~ arrayDelay 500;
-#X obj 122 110 phasor~ 440;
-#X obj 234 146 dac~;
-#X obj 232 110 *~;
-#X obj 276 84 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
-#X obj 86 96 *~;
-#X obj 96 45 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 10400 1;
-#X obj 13 127 line~;
-#X msg 11 93 1 \, 0 500 1;
-#X obj 10 30 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
-;
-#X obj 31 168 *~;
-#X floatatom 257 11 5 0 0 0 - - -;
-#X obj 10 54 metro 1500;
-#X connect 1 0 4 0;
-#X connect 1 0 6 0;
-#X connect 2 0 11 0;
-#X connect 4 0 3 0;
+#N canvas 1142 186 712 661 linkDelay 1;
+#X obj 350 557 delwrite~ arrayDelay 2000;
+#X obj 473 342 delread~ arrayDelay 500;
+#X obj 366 415 phasor~ 440;
+#X obj 475 443 *~;
+#X obj 496 418 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 12700 1;
+#X obj 330 401 *~;
+#X obj 339 353 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 1687 1;
+#X obj 257 432 line~;
+#X msg 255 398 1 \, 0 500 1;
+#X obj 254 335 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 275 473 *~;
+#X floatatom 476 314 5 0 0 0 - - -;
+#X obj 254 359 metro 1500;
+#X obj 330 319 r delay1Value;
+#X obj 492 366 loadbang;
+#X msg 493 389 1;
+#X obj 474 265 r delay2Value;
+#X obj 474 288 * 500;
+#X obj 477 479 outlet~;
+#X obj 371 507 inlet~;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array arrayDelay 2000 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#A 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X coords 0 1 2000 -1 200 140 1;
+#X restore 234 146 graph;
+#X connect 1 0 3 0;
+#X connect 1 0 5 0;
+#X connect 2 0 10 0;
+#X connect 3 0 18 0;
 #X connect 4 0 3 1;
-#X connect 5 0 4 1;
-#X connect 6 0 0 0;
-#X connect 7 0 6 1;
-#X connect 8 0 11 1;
-#X connect 9 0 8 0;
-#X connect 10 0 13 0;
-#X connect 11 0 0 0;
-#X connect 12 0 1 0;
-#X connect 13 0 9 0;
-#X restore 532 167 pd linkDelay;
+#X connect 5 0 0 0;
+#X connect 6 0 5 1;
+#X connect 7 0 10 1;
+#X connect 8 0 7 0;
+#X connect 9 0 12 0;
+#X connect 10 0 0 0;
+#X connect 11 0 1 0;
+#X connect 12 0 8 0;
+#X connect 13 0 6 0;
+#X connect 14 0 15 0;
+#X connect 15 0 4 0;
+#X connect 16 0 17 0;
+#X connect 17 0 11 0;
+#X connect 19 0 0 0;
+#X restore 188 337 pd linkDelay;
 #X connect 0 0 9 1;
 #X connect 0 1 9 2;
 #X connect 1 0 0 1;
@@ -961,13 +1036,9 @@
 #X connect 4 1 9 4;
 #X connect 5 0 9 0;
 #X connect 7 0 8 0;
+#X connect 7 0 16 0;
 #X connect 7 1 8 1;
-#X connect 7 2 8 2;
-#X connect 7 3 8 3;
-#X connect 7 4 8 4;
-#X connect 7 5 8 5;
-#X connect 7 6 8 6;
-#X connect 7 7 8 7;
+#X connect 7 1 16 0;
 #X connect 9 0 10 1;
 #X connect 9 1 10 2;
 #X connect 9 2 10 3;
@@ -995,6 +1066,8 @@
 #X connect 15 2 4 3;
 #X connect 15 3 4 4;
 #X connect 15 4 4 5;
+#X connect 16 0 8 0;
+#X connect 16 0 8 1;
 #X restore 243 649 pd theBrain;
 #X obj 274 625 r channelMixerValues;
 #X text 27 32 ----------------- SOUND BANKS -----------------;
@@ -1079,9 +1152,21 @@
 #X obj 773 459 clip 0 1;
 #X floatatom 773 496 5 0 0 0 - - -;
 #X obj 771 432 / 128;
-#X text 739 351 -- REVERB POTENTIOMETER --;
 #X obj 828 492 s reverbValue;
 #X obj 442 79 r reverbValue;
+#X text 739 351 -- FX POTENTIOMETERS --;
+#X floatatom 723 566 5 0 0 0 - - -;
+#X obj 725 618 clip 0 1;
+#X floatatom 725 655 5 0 0 0 - - -;
+#X obj 723 591 / 128;
+#X obj 724 533 ctlin 92 1;
+#X obj 780 651 s delay1Value;
+#X floatatom 906 564 5 0 0 0 - - -;
+#X obj 908 616 clip 0 1;
+#X floatatom 908 653 5 0 0 0 - - -;
+#X obj 906 589 / 128;
+#X obj 907 531 ctlin 93 1;
+#X obj 963 649 s delay2Value;
 #X connect 1 0 2 0;
 #X connect 2 0 5 0;
 #X connect 5 0 0 0;
@@ -1150,6 +1235,16 @@
 #X connect 87 0 88 0;
 #X connect 88 0 91 0;
 #X connect 89 0 90 0;
-#X connect 89 0 93 0;
+#X connect 89 0 92 0;
 #X connect 91 0 89 0;
-#X connect 94 0 11 0;
+#X connect 93 0 11 0;
+#X connect 95 0 98 0;
+#X connect 96 0 97 0;
+#X connect 96 0 100 0;
+#X connect 98 0 96 0;
+#X connect 99 0 95 0;
+#X connect 101 0 104 0;
+#X connect 102 0 103 0;
+#X connect 102 0 106 0;
+#X connect 104 0 102 0;
+#X connect 105 0 101 0;
